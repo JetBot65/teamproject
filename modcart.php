@@ -3,13 +3,13 @@ session_start();
 //connect db
 include 'database.php';
 //connect and query
-mysql_select_db("");
-if(isset($_POST['qty'])){
-    $qty = $_POST['qty'];
+mysql_select_db("mattsrecord");
+if(isset($_POST['quantity'])){
+    $qty = $_POST['quantity'];
 }
 
-if (isset($_POST['products_prodnum'])) {
-    $prodnum = $_POST['products_prodnum'];
+if (isset($_POST['inventory_id'])) {
+    $prodnum = $_POST['inventory_id'];
 }
 
 if (isset($_POST['modified_hidden'])) {
@@ -29,7 +29,7 @@ switch ($action) {
          temp_cart_quan,
          temp_cart_prodnum,
          
-     }"
+     };
 }
 
 ?>

@@ -4,32 +4,30 @@
 session_start();
 
 // connect to database
-include 'database.php';
+ include 'database.php'; 
+ $dbconn = getDatabaseConnection();
+ $dbconn-> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-//we will make database active
-mysql_select_db();
-
-//get the product from the URL
-$prodid = $_REQUEST['prodid'];
+$albumn = $_POST ['Submit'];
 
 //query to get info on our product
-$query = "SELECT * FROM products where WHERE products_prodnum= '$prodid'";
-$results = mysql_query($query)
-    or die(mysql_error());
-$row = mysql_fetch_array($results);
-extract($row);
+$sql = "SELECT album_name, songlist, artist_name, label_name, price FROM `Matt's_Inventory` natural join `Album` natural join 'Artist' natural join `Record_Label` WHERE album_name= : albumn";
 
+$stmt =$dbconn->prepare($sql);
+
+
+$stmt->execute ( array ( ':albumn'=> $albumn) );
 ?>
 
 <html>
     <head>
-        <title><?php echo $products_name; ?></title>
+        <title><?php echo $album_name; ?></title>
     </head>
     <body>
     <div align="center">
         <table cellpadding= "5" width= "90%">
             <tr>
-                <td>PRODUCT IMAGE</td>
+                <td><a href=</a></td>
                 <td><strong><?php echo $products_name; ?></strong><br>
                 <?php echo $products_prodesc; ?><br \>
                 <br>PRODUCT NUMBER:<?php echo $products_prodnum; ?> 

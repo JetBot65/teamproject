@@ -44,13 +44,12 @@ body {
 <body>
 <div class="container">
   <img src="img/header.jpg" alt="Header" style="width:90%;" style= "height:50%">
-  <div class="centered">Centered</div>
 </div>
 
 <div class="row">
   <div class="column side">
     <h2>CD'S/Records</h2>
-  	<img src="img/abba.jpg" alt="picture of abba" class="left">
+  	<img src="img/Arrival.jpg" alt="picture of abba" class="left">
   </div>
   <div class="column middle">
     <h1>WHO ARE WE!</h1>
@@ -58,11 +57,11 @@ body {
   </div>
  
   <div class="column ">
-    <h2>The Best Clasasic Albums</h2>
-   	<img src="img/eltonjohn.jpg" alt="picture of elton john" class="right">
+    <h2>The Best Classic Albums</h2>
+   	<img src="img/Good Bye Yellow Brick Road.jpg" alt="picture of elton john" class="right">
   </div> 	
   <br><br>
-  <table width="400" align="center">
+  <table width="200" align="center">
     <tr>
       <td>inventory_id</td>
        <td>albumname</td>
@@ -73,6 +72,7 @@ body {
     <?php
     //connect to database
       include 'database.php'; 
+      
       $dbconn = getDatabaseConnection();
       $dbconn-> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       

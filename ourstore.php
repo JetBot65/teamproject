@@ -89,7 +89,12 @@ body {
         while($row=$stmt->fetch()){
           echo "<tr>";
           echo "<td>". $row ['inventory_id'].str_repeat('&nbsp;', 1). "</td>";
-          echo "<td>". $row ['album_name'].str_repeat('&nbsp;',1). "</td>";
+          echo "<form action='get_prod.php' method='POST'>";
+          echo "<td>";
+          $albnm = $row ['album_name'];
+          echo "<input type='submit' name ='Submit' value='$albnm'>"; 
+          echo "</td>";
+          echo"</form>";
           echo "<td>". $row ['price'].str_repeat('&nbsp;', 1). "</td>";
           echo "<td>". $row ['quantity'].str_repeat('&nbsp;', 1). "</td>";
           echo"</tr>";

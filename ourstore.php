@@ -50,40 +50,56 @@ body {
 <div class="row">
   <div class="column side">
     <h2>CD'S/Records</h2>
-  	<img src="img/boombox.jpg" alt="picture of boombox" class="left">
+  	<img src="img/abba.jpg" alt="picture of abba" class="left">
   </div>
   <div class="column middle">
     <h1>WHO ARE WE!</h1>
-    <p>Matt's Hip-Hop Stop is a special order online store that delivers oldschool cd'd and records.</p>
+    <p>Matt's Record's is a special order online store that delivers oldschool cd'd and records.</p>
   </div>
  
   <div class="column ">
-    <h2>Hip-Hop Stop</h2>
-   	<img src="img/ospos2.jpg" alt="poster" class="left">
-  </div>
-  </div>
+    <h2>The Best Clasasic Albums</h2>
+   	<img src="img/eltonjohn.jpg" alt="picture of elton john" class="right">
+  </div> 	
   <br><br>
-  <table width="400">
+  <table width="400" align="center">
+    <tr>
+      <td>inventory_id</td>
+       <td>albumname</td>
+        <td>price</td>
+         <td>quantity</td>
+    </tr>
     
     <?php
     //connect to database
       include 'database.php'; 
+      $dbconn = getDatabaseConnection();
+      $dbconn-> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       
-    while ($row =mysql_fetch_array($results)){
-      extract ($row);
-      echo "<tr><td align=\"center\">";
-      echo "<a href=\"getprod.php?prodid=" . $products_prodnum . "\">";
-      echo "<em>THUMBNAIL<br>IMAGE</em></a></td>";
-      echo "<td>";
-      echo "<a href=\"getprod.php?prodid=" . $products_prodnum . "\">";
-      echo $products_name;
-      echo "</td></a>";
-      echo "<td align=\"right\">";
-      echo "<a href=\"getprod.php?prodid=" . $products_prodnum . "\">";
-      echo "$" . $products_price;
-      echo "</a></td></tr>";
-    }
-    ?>
+      //sql statemen
+      $sql = " SELECT inventory_id,album_name,price,quantity FROM `Album` NATURAL JOIN `Matt's_Inventory` ";
+      //prepare for sql
+      $stmt = $dbconn->prepare($sql);
+      
+      $stmt->execute();
+      
+      // The results of teh query
+      
+      if ($stmt->rowCount() > 0){
+        while($row=$stmt->fetch()){
+          echo "<tr>";
+          echo "<td>". $row ['inventory_id'].str_repeat('&nbsp;', 1). "</td>";
+          echo "<td>". $row ['album_name'].str_repeat('&nbsp;',1). "</td>";
+          echo "<td>". $row ['price'].str_repeat('&nbsp;', 1). "</td>";
+          echo "<td>". $row ['quantity'].str_repeat('&nbsp;', 1). "</td>";
+          echo"</tr>";
+        }
+      }
+      else{
+        echo "nothing found";
+      }
+      
+   ?>
   </table>
   </body>
 </html>

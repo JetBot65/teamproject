@@ -4,7 +4,7 @@
 include 'database.php';
 
 //Get DB
-mysql_select_db("");
+mysql_select_db("mattsrecords");
 
 //make a temp shopping cart
 $query = "CREATE TABLE tempcart(
@@ -16,5 +16,5 @@ $query = "CREATE TABLE tempcart(
   KEY(temp_cart_session))";
  $temp = mysql_query($query)
     or die(mysql_error());
- echo "This is your temporaey shopping cART!" ;    
+ echo "This is your temporary shopping cART!" ;    
 ?>

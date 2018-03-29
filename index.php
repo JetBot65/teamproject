@@ -7,7 +7,7 @@
         <div> 
         <div>Team Project</div>
         <div>
-        <a href="../team_project/ourstore.php">Team Project</a>
+        <a href="team_project/ourstore.php">Team Project</a>
        
         
 

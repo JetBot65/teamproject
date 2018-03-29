@@ -6,10 +6,11 @@
     {
         $filterText = $_POST['filterText'];
         $searchType = $_POST['searchType'];
+        $order = $_POST['order'];
     }
     
-    echo ($filterText);
-    echo ($searchType);
+    //echo ($filterText);
+    //echo ($searchType);
     
     
     include 'database.php'; 
@@ -23,23 +24,24 @@
                 FROM  `Matt's_Inventory` 
                 NATURAL RIGHT OUTER JOIN  `Album`";
  
-              
+     
             if($searchType == inventory) {
                 
-                $sql = $sql . "WHERE inventory_id LIKE $filterText";
+                $sql = $sql . "WHERE inventory_id LIKE '%$filterText%' ";
+                                
                 
             }
-            if($searchType == price) {
+           else if($searchType == price) {
                 
-                $sql = $sql . "WHERE price LIKE $filterText";
-                
-            }
-            if($searchType == quantity) {
-                
-                $sql = $sql . "WHERE quantity LIKE $filterText";
+                $sql = $sql . "WHERE price LIKE '%$filterText%'";
                 
             }
-            if($searchType == album) {
+           else if($searchType == quantity) {
+                
+                $sql = $sql . "WHERE quantity LIKE '%$filterText%'";
+                
+            }
+           else if($searchType == album) {
                 
                 $sql = $sql . "WHERE album_name LIKE '%$filterText%'";
                 
@@ -47,12 +49,21 @@
             else 
             {
                 $sql = $sql . "
-        WHERE `Matt's_Inventory`.inventory_id LIKE CONCAT('%', :filterText, '%')
-        OR price LIKE CONCAT('%', :filterText, '%')
-        OR quantity LIKE CONCAT('%', :filterText, '%')
-        OR album_name LIKE CONCAT('%', :filterText, '%')
-        "; 
+                    WHERE `Matt's_Inventory`.inventory_id LIKE CONCAT('%', :filterText, '%')
+                    OR price LIKE CONCAT('%', :filterText, '%')
+                    OR quantity LIKE CONCAT('%', :filterText, '%')
+                    OR album_name LIKE CONCAT('%', :filterText, '%')
+                    "; 
             }
+            if($order == asc)
+            {
+                $sql = $sql. " ORDER BY inventory_id ASC";
+            }
+            if($order == desc)
+            {
+                $sql = $sql. " ORDER BY inventory_id DESC ";
+            }
+            
               
        // sql filter
        /*$sql = $sql . "
@@ -99,6 +110,16 @@
  
    <form action="ourstore.php" method="POST">
             <div class="input-group filter-area">
+                
+                
+                <input type="radio" name="order" value="asc"> Acending Order<br>
+                <input type="radio" name="order" value="desc"> Decending Order<br>
+                
+                
+                
+                
+                
+                
                 
                  <select name="searchType">
                         <option value="sType">Search Type</option>

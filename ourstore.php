@@ -5,30 +5,7 @@
 <title>Team Project CST336</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
 
-body {
-  margin: 0;
-}
-
-/* Style the header */
-.header {
-    background-color: #000000;
-    padding: 10px;
-  
-}
-
-.column {
-    float:left;
-    padding: 10px;
-}
-
-.column.side {
-  float:clear;
-    width: 10px;
-}
-
-</style>
 
 <link href="css/styles.css" rel="stylesheet" type="text/css"/>
 </head>

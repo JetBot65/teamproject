@@ -1,20 +1,31 @@
 
-
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
-}
-
-
-
 body {
     font-family: "Lucida Console", Lucida, Monospace;
-    background:#eeeeee;
+    background:lightblue;
 	color:Black;
 	font:normal 10 px;
 	text-align:center; 
 	}
+
+
+.logo{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.logo img{
+    width: 100px;
+    height: 100px;
+}
+.title{
+    margin-left: 10px;
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 60px;
+    text-transform: uppercase;
+    position: relative;
+    top: 13px;
+}
+	
 table, td{
 	    border:2px solid black;
 	}

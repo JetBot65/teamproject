@@ -16,6 +16,8 @@ $albumn = $_POST ['Submit'];
 <html>
     <head>
         <title><?php echo $album_name; ?></title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body>
     <div align="center">
@@ -26,6 +28,7 @@ $albumn = $_POST ['Submit'];
             $sql = " SELECT album_name,songlist,artist_name,label_name,price FROM `Matt's_Inventory` natural join `Album` natural join `Artist` natural join `Record_Label` WHERE album_name='$albumn' ";
             $stmt =$dbconn->prepare($sql);
             $stmt->execute();
+            // work image display
             echo "<td><img src='img/$albumn.jpg' alt='$albumn pic'/></td>";
              if ($stmt->rowCount() > 0){
                 while($row=$stmt->fetch()){
@@ -33,28 +36,28 @@ $albumn = $_POST ['Submit'];
                     $abl_n = $row['album_name'];
                     echo "<td><strong>Album Name: </strong>$abl_n</td><br>";
                     $art_n = $row['artist_name'];
-                    echo "<td><strong>Album Name: </strong>$art_n</td><br>";
+                    echo "<td><strong>Artist: </strong>$art_n</td><br>";
                     $sglt = $row['songlist'];
                     echo "<td><strong>Songlist</strong><br>$sglt</td><br>";
                     $prc = $row['price'];
                     echo "<td><strong>Price: $</strong>$prc</td>";
-                    /*<form method="POST" action="modcart.php?action=add">
-                        <input type="hidden" name= "products_prodnum" 
-                        value="<?php echo $products_prodnum; ?>"
-                        <input type="submit" name="SUBMIT" value="Add To Cart">
-                        </form>
-                        <form method="POST" action='cart.php'>
-                        <input type="submit" name="SUBMIT" value="View Cart">  
-                        </form>
-                    </td>
-                    */
-                    echo "</tr>";
                     
                 }
+                
              }
+             
            
            ?>
+           
         </table>
+        
+        <?php
+         echo "</ br> </ br>";
+                 echo "<form action='shopping_cart.php' method='POST'>";
+                 echo "<input type='hidden' name ='album' value='$abl_n'>";
+                 echo "<input type='submit' name ='Cart' value='Add To Cart'>"; 
+                 echo"</form>";
+          ?>
         <hr width="200">
         <p><a href="ourstore.php">HOME</a></p>
     </div>

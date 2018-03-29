@@ -15,60 +15,51 @@ body {
 .header {
     background-color: #000000;
     padding: 10px;
-    text-align: center;
+  
 }
 
 .column {
-    float: left;
+    float:left;
     padding: 10px;
 }
 
 .column.side {
-    width: 25%;
+  float:clear;
+    width: 10px;
 }
 
-
-.column.middle {
-    width: 50%;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 </style>
 
 <link href="css/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="container">
-  <img src="img/header.jpg" alt="Header" style="width:90%;" style= "height:50%">
-</div>
-
-<div class="row">
-  <div class="column side">
+ <header>
+  <div class="logo">
+  <img src="img/header.jpg"> <span class="title">Matt's Records</span>
+  </div>
+  
+    <div class="column side">
     <h2>CD'S/Records</h2>
   	<img src="img/Arrival.jpg" alt="picture of abba" class="left">
-  </div>
-  <div class="column middle">
-    <h1>WHO ARE WE!</h1>
-    <p>Matt's Record's is a special order online store that delivers oldschool cd'd and records.</p>
-  </div>
+    <h2>Classic Albums!</h2>
+   	<img src="img/Goodbye Yellow Brick Road.jpg" alt="picture of elton john" class="left">
+   	</div>
+  
  
-  <div class="column ">
-    <h2>The Best Classic Albums</h2>
-   	<img src="img/Good Bye Yellow Brick Road.jpg" alt="picture of elton john" class="right">
-  </div> 	
-  <br><br>
+ 
+  
+  <div class="table">
   <table width="200" align="center">
+    <h1>WHO ARE WE!</h1>
+    <p>Matt's Record's is a special order online store</p>
+     <p>that delivers oldschool cd'd and records.</p>
     <tr>
       <td>inventory_id</td>
        <td>albumname</td>
         <td>price</td>
          <td>quantity</td>
     </tr>
-    
+    </div>
     <?php
     //connect to database
       include 'database.php'; 

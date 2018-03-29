@@ -90,38 +90,64 @@
 <title>Team Project CST336</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
 
+* {
+    box-sizing: border-box;
+    
+}
 
+#shadow-image {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+</style>
 <link href="css/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
- <header>
   <div class="logo">
   <span class="title">Matt's Records</span>
   </div>
   
-    <div class="column side">
-    <h2>CD'S/Records</h2>
-  	<img src="img/Arrival.jpg" alt="picture of abba" class="left">
-    <h2>Classic Albums!</h2>
-   	<img src="img/Goodbye Yellow Brick Road.jpg" alt="picture of elton john" class="left">
-   	</div>
+  <div class="row">
+  <div class="column">
+  <h2>CD'S/Records</h2> 
+    <img src="img/Arrival.jpg" alt="abba">
+  </div>
+  <div class="column">
+     <h2>Classic Albums!</h2>
+    <img src="img/Goodbye Yellow Brick Road.jpg">
+  </div>
+  <div class="column">
+    <h2>Best Selection!</h2>
+    <img src="img/Escape.jpg">
+  </div>
+</div>
   
+   
+ 
  
    <form action="ourstore.php" method="POST">
             <div class="input-group filter-area">
-                
-                
                 <input type="radio" name="order" value="asc"> Acending Order<br>
                 <input type="radio" name="order" value="desc"> Decending Order<br>
-                
-                
-                
-                
-                
-                
-                
-                 <select name="searchType">
+                <select name="searchType">
                         <option value="sType">Search Type</option>
                         <option value="inventory">Inventory</option>
                         <option value="album">Album</option>

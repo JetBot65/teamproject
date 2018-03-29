@@ -5,6 +5,7 @@ body {
 	color:Black;
 	font:normal 10 px;
 	text-align:center; 
+	text-shadow: 2px 2px #b3b3b3;
 	}
 
 
@@ -24,9 +25,22 @@ body {
     text-transform: uppercase;
     position: relative;
     top: 13px;
+    text-shadow: 2px 2px  #b3b3b3;
 }
-	
+
 table, td{
 	    border:2px solid black;
 	}
 
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

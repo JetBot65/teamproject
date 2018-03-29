@@ -97,7 +97,7 @@
 <body>
  <header>
   <div class="logo">
-  <img src="img/header.jpg"> <span class="title">Matt's Records</span>
+  <span class="title">Matt's Records</span>
   </div>
   
     <div class="column side">

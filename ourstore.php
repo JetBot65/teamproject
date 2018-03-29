@@ -1,4 +1,78 @@
 
+<?php
+    $filterText = '';
+    // We only care about the filter if we are posting back
+    if ('POST' === $_SERVER['REQUEST_METHOD']) 
+    {
+        $filterText = $_POST['filterText'];
+        $searchType = $_POST['searchType'];
+    }
+    
+    echo ($filterText);
+    echo ($searchType);
+    
+    
+    include 'database.php'; 
+      $dbconn = getDatabaseConnection();
+      $dbconn-> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    
+
+     //sql statement
+      
+             $sql = "SELECT inventory_id,album_name, quantity, price
+                FROM  `Matt's_Inventory` 
+                NATURAL RIGHT OUTER JOIN  `Album`";
+ 
+              
+            if($searchType == inventory) {
+                
+                $sql = $sql . "WHERE inventory_id LIKE $filterText";
+                
+            }
+            if($searchType == price) {
+                
+                $sql = $sql . "WHERE price LIKE $filterText";
+                
+            }
+            if($searchType == quantity) {
+                
+                $sql = $sql . "WHERE quantity LIKE $filterText";
+                
+            }
+            if($searchType == album) {
+                
+                $sql = $sql . "WHERE album_name LIKE '%$filterText%'";
+                
+            }
+            else 
+            {
+                $sql = $sql . "
+        WHERE `Matt's_Inventory`.inventory_id LIKE CONCAT('%', :filterText, '%')
+        OR price LIKE CONCAT('%', :filterText, '%')
+        OR quantity LIKE CONCAT('%', :filterText, '%')
+        OR album_name LIKE CONCAT('%', :filterText, '%')
+        "; 
+            }
+              
+       // sql filter
+       /*$sql = $sql . "
+        WHERE `Matt's_Inventory`.inventory_id LIKE CONCAT('%', :filterText, '%')
+        OR price LIKE CONCAT('%', :filterText, '%')
+        OR quantity LIKE CONCAT('%', :filterText, '%')
+        OR album_name LIKE CONCAT('%', :filterText, '%')
+        "; */
+              
+      //prepare for sql
+      $stmt = $dbconn->prepare($sql);
+     $stmt->execute(array(':filterText' => $filterText));
+      
+      
+      
+      // The results of the query
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +97,27 @@
    	</div>
   
  
- 
+   <form action="ourstore.php" method="POST">
+            <div class="input-group filter-area">
+                
+                 <select name="searchType">
+                        <option value="sType">Search Type</option>
+                        <option value="inventory">Inventory</option>
+                        <option value="album">Album</option>
+                        <option value="price">Price</option>
+                        <option value="quantity">Quantity</option>
+              </select>
+              <br><br>
+                
+                
+                <input type="text" name="filterText" class="form-control"aria-label="Text input with segmented dropdown button">
+            
+                <div class="input-group-append">
+                    <input type="submit" value="Filter" class="btn btn-outline-secondary">
+                </div>
+            
+            </div>
+    </form>
   
   <div class="table">
   <table width="200" align="center">
@@ -38,20 +132,9 @@
     </tr>
     </div>
     <?php
-    //connect to database
-      include 'database.php'; 
+    
       
-      $dbconn = getDatabaseConnection();
-      $dbconn-> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-      
-      //sql statemen
-      $sql = " SELECT inventory_id,album_name,price,quantity FROM `Album` NATURAL JOIN `Matt's_Inventory` ";
-      //prepare for sql
-      $stmt = $dbconn->prepare($sql);
-      
-      $stmt->execute();
-      
-      // The results of teh query
+      // The results of the query
       
       if ($stmt->rowCount() > 0){
         while($row=$stmt->fetch()){

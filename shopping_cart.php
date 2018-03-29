@@ -79,12 +79,12 @@
          echo "<input type='submit' name ='Reset' value='End Session'>"; 
          echo"</form>";
          if(isset($_POST['Reset'])){
-             echo "<meta http-equiv=refresh content=\"0; URL=ourstore.php\">";
+             echo "<meta http-equiv=refresh content=\"0; URL=index.php\">";
              session_destroy();
          }
       ?>
     <hr width="200">
-    <p><a href="ourstore.php">HOME</a></p>
+    <p><a href="index.php">HOME</a></p>
 </body>
 </html>
 

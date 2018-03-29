@@ -108,7 +108,7 @@
    	</div>
   
  
-   <form action="ourstore.php" method="POST">
+   <form action="index.php" method="POST">
             <div class="input-group filter-area">
                 
                 
